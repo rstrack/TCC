@@ -1,0 +1,172 @@
+\documentclass[12pt]{article}
+
+\usepackage{sbc-template}
+
+\usepackage{graphicx,url}
+
+\usepackage[utf8]{inputenc}  
+\usepackage[brazil]{babel}   
+
+     
+\sloppy
+
+\title{Estudo Comparativo de Mecanismos de Segurança Aplicados a Autenticação e Autorização em Sistemas Web}
+
+\author{Rafael Strack\inst{1}, Adriano Ferrasa\inst{1}}
+
+
+\address{Departamento de Informática -- Universidade Estadual de Ponta Grossa
+  (UEPG)\\
+  84.030-900 -- Ponta Grossa -- PR -- Brasil
+\email{rafa\_strack@hotmail.com, ferrasa@uepg.br}
+}
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This article presents a comparative study of authentication and authorization 
+mechanisms in web systems, aiming to provide an in-depth analysis of the 
+available options and their characteristics. The study describes the most 
+commonly used methods such as passwords, tokens, multifactor authentication, 
+and OAuth, analyzing their advantages and disadvantages. Additionally, 
+sequence diagrams are provided to illustrate the usage flow of each method. 
+Finally, a comparison of the studied methods is conducted, evaluating their 
+effectiveness in terms of security. Proper understanding of these mechanisms 
+is crucial to ensure the security of web systems and guide the correct 
+choice in future projects.
+\end{abstract}
+     
+\begin{resumo}
+Este artigo apresenta um estudo comparativo dos mecanismos de autenticação 
+e autorização em sistemas web, visando fornecer uma análise aprofundada das 
+opções disponíveis e suas características. O estudo descreve os métodos mais 
+utilizados, como senhas, tokens, autenticação multifator e OAuth, analisando 
+suas vantagens e desvantagens. Além disso, são apresentados diagramas de 
+sequência para ilustrar o fluxo de utilização de cada método. Ao final, é 
+realizada uma comparação dos métodos estudados, avaliando sua eficácia em 
+termos de segurança. A compreensão adequada desses mecanismos é fundamental 
+para garantir a segurança dos sistemas web e orientar a escolha correta em 
+projetos futuros.
+\end{resumo}
+
+
+\section{Introdução}
+
+Com a expansão da internet, os sistemas web assumiram um papel crucial no
+cotidiano de bilhões de pessoas em todo o mundo. Desde o uso de redes sociais até
+o gerenciamento de negócios online, essas ferramentas se tornaram indispensáveis
+para diversas atividades. Tanto pessoas físicas quanto empresas dependem desses
+sistemas para garantir a eficiência e produtividade de suas operações. No entanto, a
+segurança desses sistemas é uma preocupação constante para desenvolvedores e
+usuários, pois há uma série de ameaças e vulnerabilidades que podem comprometer
+sua integridade.
+
+A fundação OWASP (Open Worldwide Application Security Project) atualiza
+regularmente um relatório chamado OWASP Top 10, onde são descritos os 10 riscos
+de segurança mais críticos em sistemas web. Na última edição, realizada em 2021, a
+categoria que ficou em primeira colocação foi a quebra de controle de acesso. Em
+sétima colocação, ficou a categoria de falhas de identificação e autenticação 
+\cite{OWASP2021}. Esses problemas são diretamente relacionados aos processos de 
+autenticação e autorização de usuários, os quais são essenciais para garantir a 
+proteção adequada dos sistemas.
+
+De modo geral, a autenticação é o processo de validação de usuários, enquanto a 
+autorização é o método que fornece as permissões de acesso corretas aos recursos 
+para usuários previamente autenticados \cite{TUMIN2012}. Atualmente, existem diversos 
+mecanismos de autenticação e autorização de usuários disponíveis, como senhas, tokens, 
+autenticação multifator, OAuth, OpenID, entre outros. Cada um desses mecanismos 
+apresenta características distintas, pontos positivos e negativos, sendo fundamental 
+garantir a correta implementação dos mecanismos escolhidos, de forma a assegurar a 
+efetividade da segurança dos sistemas web. 
+
+Diante desse contexto, o presente trabalho tem como objetivo realizar um estudo 
+comparativo dos diferentes mecanismos de autenticação e autorização, com o propósito 
+de fornecer uma análise aprofundada que auxilie na escolha adequada desses mecanismos 
+em projetos de sistemas web. O estudo visa oferecer uma compreensão ampla das 
+características, pontos fortes e limitações de cada mecanismo, permitindo a seleção 
+correta e a implementação eficiente das medidas de segurança necessárias.
+
+\section{Autenticação e Autorização}
+% \cite{CHAPMAN2012}
+
+
+
+\subsection{HTTP Basic Authentication}
+
+
+
+\subsection{HTTP Digest Authentication}
+
+% \section{First Page} \label{sec:firstpage}
+
+% The first page must display the paper title, the name and address of the
+% authors, the abstract in English and ``resumo'' in Portuguese (``resumos'' are
+% required only for papers written in Portuguese). The title must be centered
+% over the whole page, in 16 point boldface font and with 12 points of space
+% before itself. Author names must be centered in 12 point font, bold, all of
+% them disposed in the same line, separated by commas and with 12 points of
+% space after the title. Addresses must be centered in 12 point font, also with
+% 12 points of space after the authors' names. E-mail addresses should be
+% written using font Courier New, 10 point nominal size, with 6 points of space
+% before and 6 points of space after.
+
+% The abstract and ``resumo'' (if is the case) must be in 12 point Times font,
+% indented 0.8cm on both sides. The word \textbf{Abstract} and \textbf{Resumo},
+% should be written in boldface and must precede the text.
+
+% \section{CD-ROMs and Printed Proceedings}
+
+% In some conferences, the papers are published on CD-ROM while only the
+% abstract is published in the printed Proceedings. In this case, authors are
+% invited to prepare two final versions of the paper. One, complete, to be
+% published on the CD and the other, containing only the first page, with
+% abstract and ``resumo'' (for papers in Portuguese).
+
+% \section{Sections and Paragraphs}
+
+% Section titles must be in boldface, 13pt, flush left. There should be an extra
+% 12 pt of space before each title. Section numbering is optional. The first
+% paragraph of each section should not be indented, while the first lines of
+% subsequent paragraphs should be indented by 1.27 cm.
+
+% \subsection{Subsections}
+
+% The subsection titles must be in boldface, 12pt, flush left.
+
+% \section{Figures and Captions}\label{sec:figs}
+
+
+% Figure and table captions should be centered if less than one line, otherwise justified and indented by 0.8cm on
+% both margins, as shown in Figure. The caption font must
+% be Helvetica, 10 point, boldface, with 6 points of space before and after each
+% caption.
+
+
+% In tables, try to avoid the use of colored or shaded backgrounds, and avoid
+% thick, doubled, or unnecessary framing lines. When reporting empirical data,
+% do not use more decimal digits than warranted by their precision and
+% reproducibility. Table caption must be placed before the table (see Table 1)
+% and the font used must also be Helvetica, 10 point, boldface, with 6 points of
+% space before and after each caption.
+
+% \section{Images}
+
+% All images and illustrations should be in black-and-white, or gray tones,
+% excepting for the papers that will be electronically available (on CD-ROMs,
+% internet, etc.). The image resolution on paper should be about 600 dpi for
+% black-and-white images, and 150-300 dpi for grayscale images.  Do not include
+% images with excessive resolution, as they may take hours to print, without any
+% visible difference in the result. 
+
+% \section{References}
+
+
+% The references must be listed using 12 point font size, with 6 points of space
+% before each reference. The first line of each reference should not be
+% indented, while the subsequent should be indented by 0.5 cm.
+
+\bibliographystyle{sbc}
+\bibliography{references}
+
+\end{document}
