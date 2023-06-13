@@ -7,10 +7,11 @@
 \usepackage[utf8]{inputenc}  
 \usepackage[brazil]{babel}   
 
+\graphicspath{ {./img/} }
      
 \sloppy
 
-\title{Estudo Comparativo de Mecanismos de Segurança Aplicados a Autenticação e Autorização em Sistemas Web}
+\title{Estudo Comparativo de Mecanismos de Segurança Aplicados à Autenticação e Autorização em Sistemas Web}
 
 \author{Rafael Strack\inst{1}, Adriano Ferrasa\inst{1}}
 
@@ -62,7 +63,7 @@ segurança desses sistemas é uma preocupação constante para desenvolvedores e
 usuários, pois há uma série de ameaças e vulnerabilidades que podem comprometer
 sua integridade.
 
-A fundação OWASP (Open Worldwide Application Security Project) atualiza
+A fundação OWASP (\emph{Open Worldwide Application Security Project}) atualiza
 regularmente um relatório chamado OWASP Top 10, onde são descritos os 10 riscos
 de segurança mais críticos em sistemas web. Na última edição, realizada em 2021, a
 categoria que ficou em primeira colocação foi a quebra de controle de acesso. Em
@@ -74,7 +75,7 @@ proteção adequada dos sistemas.
 De modo geral, a autenticação é o processo de validação de usuários, enquanto a 
 autorização é o método que fornece as permissões de acesso corretas aos recursos 
 para usuários previamente autenticados \cite{TUMIN2012}. Atualmente, existem diversos 
-mecanismos de autenticação e autorização de usuários disponíveis, como senhas, tokens, 
+mecanismos de autenticação e autorização de usuários disponíveis, como senhas, \emph{tokens}, 
 autenticação multifator, OAuth, OpenID, entre outros. Cada um desses mecanismos 
 apresenta características distintas, pontos positivos e negativos, sendo fundamental 
 garantir a correta implementação dos mecanismos escolhidos, de forma a assegurar a 
@@ -88,16 +89,87 @@ características, pontos fortes e limitações de cada mecanismo, permitindo a s
 correta e a implementação eficiente das medidas de segurança necessárias.
 
 \section{Autenticação e Autorização}
-% \cite{CHAPMAN2012}
 
+Na maioria dos sistemas web, é necessário realizar um controle de acesso, para que somente
+certos usuários possam acessar recursos protegidos. Para isso, o mecanismo  de controle de 
+acesso depende de dois processos relacionados: a autenticação e a autorização 
+\cite{SULLIVAN2011}.
+
+A autenticação pode ser definida como o processo de confirmação de identidade. Em sistemas web,
+devido a falta de conhecimento do mundo real, este processo pode não ser simples 
+\cite{CHAPMAN2012}. Existem três grupos de fatores amplamente utilizados para confirmar a 
+identidade de um usuário: algo que o usuário sabe, algo que o usuário é e algo que o usuário 
+possui. No primeiro grupo, inclui-se as senhas, PINs (\emph{Personal Identification Number}) e 
+frases secretas. No segundo grupo, inclui-se certificados digitais, \emph{smart cards} e 
+\emph{tokens} de segurança. O terceiro grupo inclui técnicas biométricas, como como impressões 
+digitais, reconhecimento facial ou de voz, entre outras \cite{SULLIVAN2011}.
+
+A autorização é o processo pelo qual o sistema decide se um usuário previamente autenticado 
+possui permissão para acessar um recurso ou executar uma determinada ação \cite{SPILCA2020}.
+
+\noindent [...]
+
+% arrumar, complementar, procurar mais referencias sobre a definição de autorização e seus tipos
+
+% Esta autorização pode ser feita baseada em usuários, garantindo acesso aos recursos do sistema 
+% web para cada usuário de forma distinta, ou baseada em perfis (\emph{roles}), em que cada usuário
+% possui um perfil, e cada perfil tem diferentes níveis de acesso aos recursos do sistema.
 
 
 \subsection{HTTP Basic Authentication}
 
+A HTTP (\emph{Hypertext Transfer Protocol}) Basic Authentication foi definida na especificação 
+RFC 2617 \cite{RFC2617} e atualizada na RFC 7617 \cite{RFC7617}. Neste tipo de autenticação, o servidor
+web recusa uma transação caso o cliente não esteja autenticado, desafiando-o para obter um nome de usuário
+e senha válidos. Este desafio de autenticação é iniciado retornando o status HTTP 401 (não autorizado) e
+especificando o domínio de segurança (\emph{security realm}) a ser acessado, com o cabeçalho WWW-Authenticate.
+Ao receber o desafio, o navegador abre uma caixa de diálogo para que o usuário insira as credenciais para 
+acesso ao domínio. O navegador então junta as informações de usuário e senha, colocando dois pontos entre eles,
+e os codifica usando o método de codificação base-64. Estas credenciais codificadas são colocadas no cabeçalho
+Authorization, e então a requisição é enviada para o servidor, que fará a validação das credenciais e, caso
+validadas, retorna-se o status HTTP 200 (OK), e as informações da página web requisitada \cite{GOURLEY2002}.
+Um exemplo do funcionamento deste método de autenticação é mostrado na Figura \ref{fig:basicAuth}.
 
+% Os domínios de segurança utilizados por essa autenticação são identificadores de coleções de recursos, geralmente
+% que possuem alguma relação ou mesmo nível de proteção. Estes domínios, incorporados ao cabeçalho HTTP, definem
+% quais recursos o usuário, ao ser autenticado, terá acesso. 
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=1\textwidth]{Basic Authentication.png}
+  \caption{Exemplo de HTTP Basic Authentication}
+  \label{fig:basicAuth}
+\end{figure}
+
+A diretiva de domínio (\emph{realm}) utilizada na Basic Authentication define os espaços de proteção do sistema 
+web. Esses domínios permitem que os recursos protegidos sejam particionados, cada um com seu próprio esquema de 
+autenticação e/ou autorização \cite{RFC2617}.
+
+A HTTP Basic Authentication é simples e de fácil implementação, porém não possui segurança. As credenciais do
+usuário podem ser facilmente decodificadas, visto que a codificação base64 é facilmente reversível, podendo ser
+realizada em poucos segundos. Também é possível realizar ataques de reprodução, visto que terceiros podem capturar
+pacotes e replicá-los, mesmo que codificados, podendo obter acesso ao sistema. Este tipo de autenticação não possui
+proteção contra \emph{proxies} ou \emph{middlewares}, que podem facilmente modificar o corpo da mensagem, e também
+são vulneráveis a servidores falsificados, que se passam por outros para realizar o roubo de credenciais. Além Estes
+pontos negativos a autenticação básica não possui encerramento de sessão, fazendo com que o usuário permaneça conectado
+até o fechamento do navegador.
 
 \subsection{HTTP Digest Authentication}
-
+\
+\subsection{Session-Based Authentication}
+\
+\subsection{Token-Based Authentication}
+\
+\subsection{OAuth e OAuth2}
+\
+\subsection{OpenID}
+\
+\section{Materiais e Métodos}
+\
+\section{Resultados e Discussão}
+\
+\section{Conclusão}
+\
 % \section{First Page} \label{sec:firstpage}
 
 % The first page must display the paper title, the name and address of the
