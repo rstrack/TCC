@@ -1,0 +1,24 @@
+\section{Autenticação e Autorização}
+
+Na maioria dos sistemas web, é necessário realizar um controle de acesso, para que somente
+certos usuários possam acessar recursos protegidos. Para isso, o mecanismo  de controle de
+acesso depende de dois processos relacionados: a autenticação e a autorização
+\cite{SULLIVAN2011}.
+
+A autenticação pode ser definida como o processo de confirmação de identidade. Em sistemas web,
+devido a falta de conhecimento do mundo real, este processo pode não ser simples
+\cite{CHAPMAN2012}. Existem três grupos de fatores amplamente utilizados para confirmar a
+identidade de um usuário: algo que o usuário sabe, algo que o usuário é e algo que o usuário
+possui. No primeiro grupo, inclui-se as senhas, PINs (\emph{Personal Identification Number}) e
+frases secretas. No segundo grupo, inclui-se certificados digitais, \emph{smart cards} e
+\emph{tokens} de segurança. O terceiro grupo inclui técnicas biométricas, como como impressões
+digitais, reconhecimento facial ou de voz, entre outras \cite{SULLIVAN2011}.
+
+% arrumar, complementar, procurar mais referencias sobre a definição de autorização e seus tipos
+A autorização é o processo pelo qual o sistema decide se um usuário previamente autenticado
+possui permissão para acessar um recurso ou executar uma determinada ação \cite{SPILCA2020}. Ela 
+pode ser realizada de várias formas, porém as mais comuns são as baseadas em usuários, garantindo 
+acesso aos recursos do sistema web para cada usuário de forma distinta, baseada em perfis 
+(\emph{roles}), em que cada usuário possui um perfil, e cada perfil tem diferentes níveis de acesso 
+aos recursos do sistema e com o protocolo OAuth \cite{CHAPMAN2012}. Alguns dos métodos de 
+autenticação e autorização mais utilizados e conhecidos serão apresentados a seguir.
