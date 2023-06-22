@@ -10,5 +10,3 @@ A autenticação baseada em sessão é o método mais comum de autenticação em
   \caption{Exemplo de Session-Based Authentication}
   \label{fig:sessionAuth}
 \end{figure}
-
-A grande vantagem deste método de autenticação é a diminuição do envio das credenciais do usuário nas requisições, diminuindo a janela de ataques, já que os \emph{cookies} são utilizados para a validação das requisições. Por outro lado, os cookies podem ser lidos por outros aplicativos, tornando o sistema exposto a ataques \emph{Cross Site Scripting} (XSS) e \emph{Cross Site Request Forgery} (CSRF). Para evitar ataques XSS, pode-se definir no \emph{cookie} a \emph{flag} \texttt{http-only}, que faz com que o acesso por APIs do lado cliente seja negado \cite{PAPATHANASAKI2022}.
