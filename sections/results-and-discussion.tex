@@ -1,27 +1,55 @@
-\section{Resultados e Discussão}
+% \section{Resultados e Discussão}
+\section{Análise preliminar}
 
-%%%%%% Basic
-% A Autenticação Básica HTTP é simples e de fácil implementação, porém não possui segurança. As 
-% credenciais do usuário podem ser facilmente decodificadas, visto que a codificação base64 é 
-% facilmente reversível, podendo ser realizada em poucos segundos. Também é possível realizar ataques 
-% de reprodução, visto que terceiros podem capturar pacotes e replicá-los, mesmo que codificados, 
-% podendo obter acesso ao sistema. Este tipo de autenticação não possui proteção contra \emph{proxies} 
-% ou \emph{middlewares}, que podem facilmente modificar o corpo da mensagem, e também são vulneráveis 
-% a servidores falsificados, que se passam por outros para realizar o roubo de credenciais 
-% \cite{GOURLEY2002}. Além destes pontos negativos a autenticação básica é \emph{stateless} (sem 
-% estado), cada solicitação é tratada separadamente, sem conexão contínua entre elas. Isso faz com 
-% que, enquanto possuir os dados, o cliente continuará mandando os cabeçalhos de autenticação em 
-% todas as requisições HTTP subsequentes para o mesmo domínio.
+%%%%% Basic
+A Autenticação Básica HTTP é simples e de fácil implementação, porém não possui segurança. As 
+credenciais do usuário podem ser facilmente decodificadas, visto que a codificação base64 é 
+facilmente reversível, podendo ser realizada em poucos segundos. Também é possível realizar ataques 
+de reprodução, visto que terceiros podem capturar pacotes e replicá-los, mesmo que codificados, 
+podendo obter acesso ao sistema. Este tipo de autenticação não possui proteção contra \emph{proxies} 
+ou \emph{middlewares}, que podem facilmente modificar o corpo da mensagem, e também são vulneráveis 
+a servidores falsificados, que se passam por outros para realizar o roubo de credenciais 
+\cite{GOURLEY2002}. Além destes pontos negativos a autenticação básica é \emph{stateless} (sem 
+estado), cada solicitação é tratada separadamente, sem conexão contínua entre elas. Isso faz com 
+que, enquanto possuir os dados, o cliente continuará mandando os cabeçalhos de autenticação em 
+todas as requisições HTTP subsequentes para o mesmo domínio.
 
-%%%%%% Digest
-% Apesar da grande melhora de segurança em relação a autenticação básica, este método possui 
-% diversos riscos de segurança. Os cabeçalhos \texttt{WWW-Authenticate} e \texttt{Authorization} 
-% possuem certo nível de proteção a manipulação, porém os outros não. Ataques de repetição poderão 
-% ser realizados se a implementação de identificadores únicos por desafio nao for realizada. Caso não
-% seja estabelecida nenhuma política de força de senha, poderão ser realizados ataques de dicionário, 
-% tentando adivinhar a senha e outros parâmetros, visto que o nome do usuário é obtido sem esforço.
-% Se a requisição passar por \emph{proxies} hostis ou comprometidos, o cliente pode ficar vulnerável 
-% a ataques \emph{man-in-the-middle} \cite{GOURLEY2002}. Este método também é \emph{stateless}, possuindo os mesmo problema citado na autenticação básica.
+%%%%% Digest
+Apesar da grande melhora de segurança em relação a autenticação básica, a autenticação 
+\emph{Digest}, este método possui diversos riscos de segurança. Os cabeçalhos 
+\texttt{WWW-Authenticate} e \texttt{Authorization} possuem certo nível de proteção a manipulação, 
+porém os outros não. Ataques de repetição poderão ser realizados se a implementação de 
+identificadores únicos por desafio nao for realizada. Caso não seja estabelecida nenhuma política de 
+força de senha, poderão ser realizados ataques de dicionário, tentando adivinhar a senha e outros 
+parâmetros, visto que o nome do usuário é obtido sem esforço. Se a requisição passar por 
+\emph{proxies} hostis ou comprometidos, o cliente pode ficar vulnerável a ataques 
+\emph{man-in-the-middle} \cite{GOURLEY2002}. Este método também é \emph{stateless}, possuindo o 
+mesmo problema citado na autenticação básica.
 
-%%%%%% Session
-% A grande vantagem deste método de autenticação é a diminuição do envio das credenciais do usuário nas requisições, diminuindo a janela de ataques, já que os \emph{cookies} são utilizados para a validação das requisições. Por outro lado, os cookies podem ser lidos por outros aplicativos, tornando o sistema exposto a ataques \emph{Cross Site Scripting} (XSS) e \emph{Cross Site Request Forgery} (CSRF). Para evitar ataques XSS, pode-se definir no \emph{cookie} a \emph{flag} \texttt{http-only}, que faz com que o acesso por APIs do lado cliente seja negado \cite{PAPATHANASAKI2022}.
+%%%%% Session
+Em relação à autenticação baseada em sessão, a grande vantagem é a diminuição do envio das 
+credenciais do usuário nas requisições, diminuindo a janela de ataques, já que os \emph{cookies} 
+são utilizados para a validação das requisições. Por outro lado, os cookies podem ser lidos por 
+outros aplicativos, tornando o sistema exposto a ataques \emph{Cross Site Scripting} (XSS) e 
+\emph{Cross Site Request Forgery} (CSRF). Para evitar ataques XSS, pode-se definir no \emph{cookie} 
+a \emph{flag} \texttt{http-only}, que faz com que o acesso por APIs do lado cliente seja negado 
+\cite{PAPATHANASAKI2022}.
+
+%%%%% OAuth
+O protocolo OAuth quando foi publicado, em 2007, tornou-se rapidamente o padrão na indústria para 
+delegação de acesso na web. Porém, teve problemas no domínio empresarial, devido ao seu desempenho. 
+A comunidade percebeu que o protocolo não era escalável: exige gerenciamento de estado em diferentes 
+etapas, gerenciamento de credenciais temporárias e não fornece isolamento do servidor de autorização 
+do próprio servidor de recursos protegidos \cite{NOUREDDINE2011}. O OAuth 2.0 resolveu estes 
+problemas, facilitando o fluxo ao substituir as assinaturas por \emph{bearer tokens}, utilizando TLS 
+durante todo o fluxo, não somente no \emph{handshake} inicial e definindo o servidor de autorização 
+separadamente do servidor de recurso, que traz maior flexibilidade \cite{SIRIWARDENA2014}.
+
+Em relação a ataques, ambos são suscetíveis a CSRF. A versão 1.0 é mais suscetível devido a 
+falta de uso de TLS em todo seu fluxo, enquanto a versão 2.0 é suscetível a este ataque caso as 
+diretrizes de implementação não forem seguidas \cite{FETT2016}. Também acaba se tornando suscetível 
+a ataques de \emph{pishing} e \emph{spoofing}, caso não forem seguidas as diretrizes \cite{RFC6819}
+
+
+
+\input{comparative-table}

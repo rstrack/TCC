@@ -1,0 +1,61 @@
+\begin{table}[ht]
+\centering
+\caption{Tabela comparativa entre aspectos de ferramentas de autenticação e autorização}
+\label{tab:comparativeTable}
+\begin{tabular}{|l|l|l|l|l|}
+% Cabeçalho
+\hline
+Mecanismo
+% & Usabilidade
+& \begin{tabular}[c]{@{}l@{}}Nível de \\ Segurança\end{tabular}
+& Vulnerabilidades
+% & \begin{tabular}[c]{@{}l@{}}Facilidade de \\ Implementação\end{tabular}
+& Obsolescência
+\\ \hline
+
+% Basic Auth
+\begin{tabular}[c]{@{}l@{}}HTTP Basic \\ Authentication\end{tabular}
+% & Baixa
+& \begin{tabular}[c]{@{}l@{}}Extremamente \\ baixo\end{tabular}   
+& \begin{tabular}[c]{@{}l@{}}Força-Bruta\\Interceptação\\Reprodução\\\emph{Man-in-the-middle}\\\emph{Spoofing}\end{tabular}
+% &
+& \begin{tabular}[c]{@{}l@{}}Não\\recomendado\\para sistemas\\modernos\\\end{tabular}
+\\ \hline
+
+% Digest Auth
+\begin{tabular}[c]{@{}l@{}}HTTP Digest \\ Authentication\end{tabular}
+% & Baixa
+& Baixo
+& \begin{tabular}[c]{@{}l@{}}Força-Bruta\\Reprodução\\\emph{Man-in-the-middle}\end{tabular}
+% &
+& \begin{tabular}[c]{@{}l@{}}Não\\recomendado\\para sistemas\\modernos\\\end{tabular}
+\\ \hline
+
+% Session-Based Auth
+\begin{tabular}[c]{@{}l@{}}Session-Based \\ Authentication\end{tabular}
+% & Alta
+& Médio
+& \begin{tabular}[c]{@{}l@{}}CSRF\\XSS (sem HTTPS)\\\end{tabular}
+% &
+& \begin{tabular}[c]{@{}l@{}}Amplamente\\utilizado\\mas possui\\opções\\mais modernas\\disponíveis\\\end{tabular}
+\\ \hline
+
+% OAuth
+OAuth
+% & Alta
+& Alto
+& \begin{tabular}[c]{@{}l@{}}CSRF\\\emph{Spoofing}\\\end{tabular}
+% &
+& \begin{tabular}[c]{@{}l@{}}Obsoleto em\\relação ao\\OAuth 2.0\\porém ainda\\aplicável\\\end{tabular}
+\\ \hline
+
+% OAuth 2.0
+Oauth 2.0
+% & Alta
+& Alto
+& \begin{tabular}[c]{@{}l@{}}\emph{Pishing}\\\end{tabular}
+% &
+& \begin{tabular}[c]{@{}l@{}}Amplamente\\utilizado e\\recomendado\\\end{tabular}
+\\ \hline
+\end{tabular}
+\end{table}
