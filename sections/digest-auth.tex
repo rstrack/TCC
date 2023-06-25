@@ -3,14 +3,20 @@
 A autenticação \emph{Digest} foi especificada na RFC 2019 \cite{RFC2019}, porém também foi 
 realocada para a RFC 2617. Foi desenvolvida para ser uma alternativa mais compatível e segura  para 
 a autenticação básica, corrigindo as falhas mais graves da mesma, como a falta de criptografia de 
-senhas, vulnerabilidade a captura e reprodução de pacotes e proteção contra vários outros tipos comuns de ataques \cite{GOURLEY2002}.
+senhas, vulnerabilidade a captura e reprodução de pacotes e proteção contra vários outros tipos 
+comuns de ataques \cite{GOURLEY2002}.
 
 Assim como a autenticação básica HTTP, a \emph{Digest} é baseada no paradigma 
-desafio-resposta \cite{RFC7616}. A diferença é que foram adicionados diversos parâmetros nos cabeçalhos, para identificação única de desafios, nível de qualidade de proteção, especificação de algoritmo de hashing utilizado entre outros recursos \cite{CHAPMAN2012}. Por padrão, o algoritmo utilizado é o MD5, porém na RFC 7616 foram adicionados e recomendados os algoritmos SHA-256 e SHA-512/256 \cite{RFC7616}.
+desafio-resposta \cite{RFC7616}. A diferença é que foram adicionados diversos parâmetros nos 
+cabeçalhos, para identificação única de desafios, nível de qualidade de proteção, especificação de 
+algoritmo de hashing utilizado entre outros recursos \cite{CHAPMAN2012}. Por padrão, o algoritmo 
+utilizado é o MD5, porém na RFC 7616 foram adicionados e recomendados os algoritmos SHA-256 e 
+SHA-512/256 \cite{RFC7616}.
 
 O parâmetro \texttt{response} é a principal parte do cabeçalho \texttt{Authorization}: ele contém 
 uma concatenação criptografada de dados da requisição, como nome do usuário, \texttt{realm}, senha, 
-método HTTP, URL, entre outros parâmetros, todos separados por dois pontos. \cite{CHAPMAN2012}. O cliente realiza o cálculo resultante no valor de \texttt{response}. O servidor também o faz e 
+método HTTP, URL, entre outros parâmetros, todos separados por dois pontos. \cite{CHAPMAN2012}. O 
+cliente realiza o cálculo resultante no valor de \texttt{response}. O servidor também o faz e 
 compara com o valor recebido. Caso as credenciais sejam válidas, retorna-se o status HTTP 200 (OK)
 e o cabeçalho \texttt{Authentication-Info}, que contém parâmetros utilizados para uma futura 
 autenticação, autenticação mútua e reenvio de parâmetros para confirmação de legitimidade. Um 
