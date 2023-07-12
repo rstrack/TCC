@@ -21,13 +21,14 @@ opcionalmente um \emph{token} de atualização;
 \item O cliente utiliza o \emph{token} de acesso para solicitar os recursos do servidor.
 \end{itemize}
 
-Na RFC 6749 foi especificado o OAuth 2.0, tornando obsoleta sua versão anterior. Esta versão possui 
+Na RFC 6749 foi proposto o protocolo OAuth 2.0, tornando obsoleta sua versão anterior. Esta versão possui 
 poucas semelhanças com a versão anterior, utilizando os mesmos princípios mas com fluxo diferente e 
-abrangendo mais casos de uso, além de estabelecer o uso do HTTPS, possuindo todas as mensagens 
-criptografadas. Por este motivo as duas não são compatíveis, coexistindo e podendo ambas serem 
-suportadas pelos sistemas \cite{RFC6749}. Diferente da versão 1.0, que depende de assinaturas 
-criptografadas para cada requisição, a versão 2.0 utiliza \emph{bearer tokens}, que são protegidos 
-devido ao uso do TLS \cite{SIRIWARDENA2014}. Seu funcionamento é dado pelas seguintes etapas:
+abrangendo mais casos de uso, além de estabelecer o uso do protocolo HTTPS, possuindo todas as mensagens 
+criptografadas. Por este motivo os dois protocolos não são compatíveis, coexistindo e podendo ambos serem 
+suportados pelos sistemas \cite{RFC6749}. Diferente da versão 1.0, que depende de assinaturas 
+criptografadas para cada requisição, a versão 2.0 utiliza \emph{tokens} portadores (\emph{bearer tokens}) 
+que são protegidos devido ao uso do TLS \cite{SIRIWARDENA2014}. Seu funcionamento é dado pelas seguintes 
+etapas (Figura \ref{fig:OAuth2}):
 
 \begin{itemize}
 \item O cliente solicita permissão de acesso ao usuário;
@@ -37,9 +38,6 @@ devido ao uso do TLS \cite{SIRIWARDENA2014}. Seu funcionamento é dado pelas seg
 \item O cliente solicita o recurso protegido ao servidor de recursos, que valida o \emph{token} de 
 acesso e atende a solicitação.
 \end{itemize}
-
-Um exemplo de funcionamento de uma autenticação utilizando OAuth 2.0 é mostrado na figura 
-\ref{fig:OAuth2}
 
 \begin{figure}[ht]
     \centering
