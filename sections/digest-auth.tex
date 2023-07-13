@@ -17,8 +17,8 @@ O parâmetro \texttt{response} é a principal parte do cabeçalho \texttt{Author
 uma concatenação criptografada de dados da requisição, como nome do usuário, \texttt{realm}, senha, 
 método HTTP, URL, entre outros parâmetros, todos separados por dois pontos. \cite{CHAPMAN2012}. O 
 cliente realiza o cálculo resultante no valor de \texttt{response}, assim como o servidor, que 
-compara o valor calculado com o valor recebido. Caso as credenciais sejam válidas, retorna-se o 
-status HTTP 200 (OK) e o cabeçalho \texttt{Authentication-Info}, que contém parâmetros utilizados 
+compara o valor calculado com o valor recebido. Caso as credenciais sejam válidas, o servidor retorna
+o status HTTP 200 (OK) e o cabeçalho \texttt{Authentication-Info}, que contém parâmetros utilizados 
 para uma futura autenticação, autenticação mútua e reenvio de parâmetros para confirmação de 
 legitimidade (Figura \ref{fig:digestAuth}).
 

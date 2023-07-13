@@ -428,8 +428,8 @@ FUNCTION {format.in.ed.booktitle}
 { booktitle empty$
     { "" }
     { editor empty$
-	{ "In " booktitle emphasize * }
-	{ "In " format.editors * ", " * booktitle emphasize * }
+	{ "Em " booktitle emphasize * }
+	{ "Em " format.editors * ", " * booktitle emphasize * }
       if$
     }
   if$
@@ -456,14 +456,14 @@ FUNCTION {format.tr.number}
 }
 
 FUNCTION {format.article.crossref}
-{ "In"							% this is for apalike
+{ "Em "							% this is for apalike
   " \cite{" * crossref * "}" *
 }
 
 FUNCTION {format.book.crossref}
 { volume empty$
     { "empty volume in " cite$ * "'s crossref of " * crossref * warning$
-      "In "
+      "Em "
     }
     { "Volume" volume tie.or.space.connect
       " of " *
@@ -473,7 +473,7 @@ FUNCTION {format.book.crossref}
 }
 
 FUNCTION {format.incoll.inproc.crossref}
-{ "In"							% this is for apalike
+{ "Em"							% this is for apalike
   " \cite{" * crossref * "}" *
 }
 
