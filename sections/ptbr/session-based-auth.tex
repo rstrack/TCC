@@ -10,12 +10,11 @@ A autenticação baseada em sessão é o método mais comum de autenticação em
 método, após o envio de credenciais de acesso e validação do usuário por meio de uma requisição 
 HTTP, o servidor gera um \emph{cookie}, armazena-o e envia-o pelo cabeçalho \texttt{Set-Cookie} da 
 resposta para o cliente. O cliente salva o valor, que é enviado no cabeçalho \texttt{Cookie} em 
-toda requisição para o mesmo servidor de origem \cite{PAPATHANASAKI2022}. Um exemplo do 
-funcionamento deste método é mostrado na figura \ref{fig:sessionAuth}
+toda requisição para o mesmo servidor de origem \cite{PAPATHANASAKI2022} (Figura \ref{fig:sessionAuth}).
 
 \begin{figure}[ht]
   \centering
-  \includegraphics[width=.8\textwidth]{Session-Based Authentication.png}
+  \includegraphics[width=.9\textwidth]{Session-Based Authentication.png}
   \caption{Exemplo de Autenticação baseada em sessão}
   \label{fig:sessionAuth}
 \end{figure}
