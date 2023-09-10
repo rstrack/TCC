@@ -6,15 +6,22 @@ especificado na RFC 2109 \cite{RFC2109} com sua versão mais atual especificada 
 \cite{RFC6265}. Este mecanismo utiliza o termo \emph{cookie} para se referir às informações de 
 estados que são passadas entre o servidor e o cliente, e salvas no cliente \cite{RFC2109}. 
 
-A autenticação baseada em sessão é o método mais comum de autenticação em sistemas web. Neste 
-método, após o envio de credenciais de acesso e validação do usuário por meio de uma requisição 
+A autenticação baseada em sessão é um dos métodos mais comuns de autenticação em sistemas web. 
+Neste método, após o envio de credenciais de acesso e validação do usuário por meio de uma requisição 
 HTTP, o servidor gera um \emph{cookie}, armazena-o e envia-o pelo cabeçalho \texttt{Set-Cookie} da 
 resposta para o cliente. O cliente salva o valor, que é enviado no cabeçalho \texttt{Cookie} em 
-toda requisição para o mesmo servidor de origem \cite{PAPATHANASAKI2022} (Figura \ref{fig:sessionAuth}).
+toda requisição para o mesmo servidor de origem \cite{PAPATHANASAKI2022} 
+(Figura \ref{fig:sessionAuth}). Uma prática comum é utilizar \emph{strings} aleatórias, chamadas 
+\emph{session identifiers}, para identificar a sessão. Elas precisam ser longas o suficiente para 
+ser inviável adivinhá-las \cite{DRHOVA2018}.
 
 \begin{figure}[ht]
   \centering
-  \includegraphics[width=.9\textwidth]{Session-Based Authentication.png}
+  \includegraphics[width=.85\textwidth]{Session-Based Authentication.png}
   \caption{Exemplo de Autenticação baseada em sessão}
   \label{fig:sessionAuth}
 \end{figure}
+
+\
+
+\
