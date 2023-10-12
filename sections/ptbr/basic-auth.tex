@@ -2,24 +2,24 @@
 
 A autenticação básica HTTP (\emph{Hypertext Transfer Protocol}) foi definida na especificação
 HTTP/1.0 \cite{RFC1945}, porém tornou-se um padrão na RFC 2617 \cite{RFC2617}. Neste tipo de
-autenticação, o servidor web recusa uma transação caso o cliente não esteja autenticado,
+autenticação, o servidor \emph{web} recusa uma transação caso o cliente não esteja autenticado,
 desafiando-o para obter um nome de usuário e senha válidos. Este desafio de autenticação é iniciado
 retornando o status HTTP 401 (não autorizado) e especificando o domínio de segurança
 (\emph{security realm}) a ser acessado, com o cabeçalho \texttt{WWW-Authenticate}. Ao receber o 
 desafio, o cliente abre uma caixa de diálogo para que o usuário insira as credenciais para acesso 
-ao domínio. O cliente então junta as informações de usuário e senha, colocando dois pontos entre 
-eles, e os codifica usando o método de codificação base-64. Estas credenciais codificadas são 
+ao domínio. O cliente então une as informações de usuário e senha, colocando dois pontos entre 
+estas, e as codifica usando o método de codificação base64. Estas credenciais codificadas são 
 colocadas no cabeçalho \texttt{Authorization}, e então a requisição é enviada para o servidor, que 
 fará a validação das credenciais e, caso validadas, retorna-se o status HTTP 200 (OK) 
 \cite{GOURLEY2002} (Figura \ref{fig:basicAuth}).
 
-\begin{figure}[ht]
+\begin{figure}[ht] 
   \centering
   \includegraphics[width=.9\textwidth]{Basic Authentication.png}
-  \caption{Exemplo de autenticação básica HTTP}
+  \caption{Exemplo de autenticação básica HTTP.}
   \label{fig:basicAuth}
 \end{figure}
 
 A diretiva de domínio (\emph{realm}) utilizada nas autenticações HTTP define os espaços de proteção 
-do sistema web. Esses domínios permitem que os recursos protegidos sejam particionados, cada um com 
-seu próprio esquema de autenticação e/ou autorização \cite{RFC2617}.
+do sistema \emph{web}. Esses domínios permitem que os recursos protegidos sejam particionados, cada 
+um com seu próprio esquema de autenticação e/ou autorização \cite{RFC2617}.

@@ -33,7 +33,7 @@ anteriormente. Sua documentação cita que, pelos padrões modernos de criptogra
 %%%%% Session
 Em relação à autenticação baseada em sessão, a grande vantagem é a diminuição do envio das 
 credenciais do usuário nas requisições, diminuindo a janela de ataques, já que os \emph{cookies} 
-são utilizados para a validação das requisições. Por outro lado, os cookies podem ser lidos por 
+são utilizados para a validação das requisições. Por outro lado, os \emph{cookies} podem ser lidos por 
 outros aplicativos, tornando o sistema exposto a ataques \emph{Cross Site Scripting} (XSS) e 
 \emph{Cross Site Request Forgery} (CSRF). Para evitar ataques XSS, pode-se definir no \emph{cookie} 
 a \emph{flag} \texttt{http-only}, que faz com que o acesso por APIs do lado cliente seja negado 
@@ -56,7 +56,7 @@ múltiplos servidores, diferentemente das outras técnicas abordadas, que são \
 %%%%% Token
 
 Sobre a autenticação baseada em \emph{tokens}, mais especificamente utilizando JWT, que é a mais 
-comum, pode-se listar algumas vulnerabilidades, caso boas práticas não sejam aplicadas. Caso seja
+comum, pode-se listar algumas vulnerabilidades caso boas práticas não sejam aplicadas. Caso seja
 validado pelo servidor o uso de JWTs sem assinatura, pode-se sofrer ataque de remoção de assinatura,
 removendo a terceira parte do \emph{token} e alterando seu cabeçalho. Caso os \emph{tokens} sejam
 armazenados em \emph{cookies}, é possível a realização de ataques CSRF, além de ataques XSS, caso a
@@ -66,7 +66,7 @@ do JWT possua baixa entropia, um ataque de força-bruta pode ser realizado para 
 
 %%%%% OAuth
 O protocolo OAuth quando foi publicado, em 2007, tornou-se rapidamente o padrão na indústria para 
-delegação de acesso na web. Porém, teve problemas no domínio empresarial, devido ao seu desempenho. 
+delegação de acesso na \emph{web}. Porém, teve problemas no domínio empresarial, devido ao seu desempenho. 
 A comunidade percebeu que o protocolo não era escalável: exige gerenciamento de estado em diferentes 
 etapas, gerenciamento de credenciais temporárias e não fornece isolamento do servidor de autorização 
 do próprio servidor de recursos protegidos \cite{NOUREDDINE2011}. O OAuth 2.0 resolveu estes 
@@ -97,14 +97,14 @@ alguns ataques de repetição quando o valor do estado não é usado ou vaza par
 
 \input{comparative-table}
 
-A Tabela \ref{tab:comparativeTable} sumariza os dados levantados. O nível de segurança implica das
-vulnerabilidades apresentadas sobre cada método, assim como a obsolescência. Devido à baixa 
-segurança, as autenticações HTTP básica e Digest são recomendadas somente a propósito de
-identificação \cite{RFC2617}, assim como a autenticação baseada em sessão. Caso o uso seja para 
-acesso a conteúdo privado, indica-se a utilização de um método mais recente e com maior segurança. 
-
-Entre os métodos abordados neste estudo, o que demonstra ser mais completo em relação a segurança e 
-recursos é o OpenID Connect: utiliza como base o OAuth 2.0, um padrão seguro e amplamente utilizado 
+% A Tabela \ref{tab:comparativeTable} sumariza os dados levantados. O nível de segurança implica das
+% vulnerabilidades apresentadas sobre cada método com base na revisão bibliográfica realizada, assim 
+% como a obsolescência. 
+Dentre os métodos analisados, em relação a baixa segurança, as autenticações HTTP básica e Digest são 
+recomendadas somente a propósito de identificação \cite{RFC2617}. Caso o uso seja para acesso a 
+conteúdo privado, indica-se a utilização de um método mais recente e com maior segurança. Ainda, em
+relação a recursos de segurança aprimorados, o método que demonstra ser mais completo é o OpenID
+Connect: utiliza como base o OAuth 2.0, um padrão seguro e amplamente utilizado 
 de autorização, com adição de uma camada de autenticação, além de melhoras em relação a definições 
 e segurança, dada a obrigatoriedade do uso de SSL. Apesar disso, deve-se levar em consideração a 
 complexidade de implementação e a necessidade de cada caso de uso, tornando a escolha do mecanismo
