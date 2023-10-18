@@ -1,5 +1,9 @@
 \section{Resultados e Discussão}
 
+Diante dos métodos estudados e avaliados, as características relativas a nível de segurança, 
+implementação, vulnerabilidades e obsolescência são exploradas neste item e sumarizadas (Tabela 
+\ref{tab:comparativeTable}).
+
 %%%%% Basic
 A autenticação básica HTTP é simples e de fácil implementação, porém não possui mecanismos de 
 garantia efetiva de segurança. As credenciais do usuário podem ser facilmente decodificadas, visto 
@@ -16,7 +20,7 @@ de segurança, indicando seu uso somente para propósitos simples de identifica�
 acesso a informações sensíveis ou valiosas \cite{RFC7617}. 
 
 %%%%% Digest
-Apesar da grande melhora de segurança em relação a autenticação básica, a autenticação 
+Apesar do incremento de segurança em relação a autenticação básica, a autenticação 
 \emph{Digest} ainda possui diversos riscos de segurança. Os cabeçalhos 
 \texttt{WWW-Authenticate} e \texttt{Authorization} possuem certo nível de proteção a manipulação, 
 porém todos os outros cabeçalhos não possuem. Ataques de repetição podem ser realizados se a 

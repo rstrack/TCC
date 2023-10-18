@@ -1,15 +1,17 @@
+\renewcommand{\arraystretch}{1.35}
 \begin{table}[!ht]
+    \fontsize{10pt}{10pt}\selectfont
     \centering
     \caption{Tabela comparativa entre aspectos de ferramentas de autenticação e autorização.}
     \label{tab:comparativeTable}
-    \begin{tabular}{|l|l|l|l|}
+    \begin{tabular}{|l|l|l|l|l|}
     % Cabeçalho
     \hline
     Mecanismo
     % & Usabilidade
     & \begin{tabular}[c]{@{}l@{}}Nível de \\ Segurança\end{tabular}
+    & Implementação
     & Vulnerabilidades
-    % & \begin{tabular}[c]{@{}l@{}}Facilidade de \\ Implementação\end{tabular}
     & Obsolescência
     \\ \hline
     
@@ -17,13 +19,13 @@
     \begin{tabular}[c]{@{}l@{}}HTTP Basic \\ Authentication\end{tabular}
     % & Baixa
     & \begin{tabular}[c]{@{}l@{}}Muito\\baixo\end{tabular}   
+    & Fácil
     & \begin{tabular}[c]{@{}l@{}}
         Força-Bruta,\\
         Repetição, CSRF\\
         \emph{Man-in-the-middle}\\
         \emph{Sniffing}, \emph{Spoofing}
     \end{tabular}
-    % &
     & \begin{tabular}[c]{@{}l@{}}Não recomendado\\para sistemas\\modernos\\\end{tabular}
     \\ \hline
     
@@ -31,13 +33,13 @@
     \begin{tabular}[c]{@{}l@{}}HTTP Digest \\ Authentication\end{tabular}
     % & Baixa
     & Baixo
+    & Fácil
     & \begin{tabular}[c]{@{}l@{}}
         Força-Bruta\\
         Repetição, CSRF\\
         \emph{Man-in-the-middle}\\
         \emph{Sniffing}, \emph{Spoofing}
     \end{tabular}
-    % &
     & \begin{tabular}[c]{@{}l@{}}Não recomendado\\para sistemas\\modernos\\\end{tabular}
     \\ \hline
     
@@ -45,37 +47,37 @@
     \begin{tabular}[c]{@{}l@{}}Session-Based \\ Authentication\end{tabular}
     % & Alta
     & Médio
+    & Moderada
     & \begin{tabular}[c]{@{}l@{}}
         Força-Bruta, CSRF,\\
         XSS (sem HTTPS), \\
         Fixação de sessão,\\
         \emph{Sniffing}
     \end{tabular}
-    % &
     & \begin{tabular}[c]{@{}l@{}}Amplamente utilizado\\ mas possui opções\\ modernas disponíveis\\\end{tabular}\\ \hline
     
     % Token-Based Auth
     \begin{tabular}[c]{@{}l@{}}Token-Based \\ Authentication\end{tabular}
     % & Alta
     & Alto
+    & Moderada
     & \begin{tabular}[c]{@{}l@{}}
         Força-Bruta, CSRF\\
         XSS, Remoção de \\
         assinatura
     \end{tabular}
-    % &
     & \begin{tabular}[c]{@{}l@{}}Amplamente utilizado\\ mas possui opções\\ modernas disponíveis\\\end{tabular}\\ \hline
     
     % OAuth 1.0 e 2.0
     \begin{tabular}[c]{@{}l@{}}OAuth e\\OAuth 2.0\end{tabular}
     % & Alta
     & \begin{tabular}[c]{@{}l@{}}Muito\\Alto\end{tabular}
+    & Complexa
     & \begin{tabular}[c]{@{}l@{}}
         CSRF, Repetição, \\
         Redirecionamento,\\
         \emph{spoofing}
     \end{tabular}
-    % &
     & \begin{tabular}[c]{@{}l@{}}OAuth: Obsoleto\\porém ainda aplicável\\OAuth 2.0: Amplamente\\utilizado e recomendado\\\end{tabular}
     \\ \hline
     
@@ -83,12 +85,12 @@
     OpenID Connect
     % & Alta
     & \begin{tabular}[c]{@{}l@{}}Muito\\Alto\end{tabular}
+    & Complexa
     & \begin{tabular}[c]{@{}l@{}}
         CSRF, Injeção, \\
         \emph{spoofing}
     \end{tabular}
-    % &
     & \begin{tabular}[c]{@{}l@{}}Amplamente\\utilizado e\\recomendado\\\end{tabular}
     \\ \hline
     \end{tabular}
-    \end{table}
+\end{table}
