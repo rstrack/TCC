@@ -5,10 +5,10 @@ não criptografadas, que carregam informações sobre um usuário autenticado \c
 padrão mais utilizado deste tipo de autenticação é o JSON \emph{Web Token} (JWT), que foi proposto
 na RFC 7519. O JWT é um formato compacto de representação de reinvindicações (\emph{claims}), 
 destinado a ambientes com restrição de espaço, como cabeçalhos HTTP e parâmetros de consulta de URI 
-\cite{RFC7519}.
+(\emph{Uniform Resource Identifier}) \cite{RFC7519}.
 
-Um JSON \emph{Web Token} é composto por cadeias de caracteres codificadas em base64url (codificação
-base64 com alterações para uso em URLs e nomes de arquivo), separadas 
+Um JSON \emph{Web Token} é composto por cadeias de caracteres codificadas em \emph{base64url} (codificação
+\emph{base64} com alterações para uso em URLs e nomes de arquivo), separadas 
 por ponto. Geralmente possuem 3 cadeias: o cabeçalho, que contém informações a respeito do tipo de mídia do 
 JWT e da criptografia usada para assinar o \emph{token}; a carga útil (\emph{payload}), que contém 
 as informações sobre as \emph{claims}, que são conjuntos de declarações sobre uma entidade 

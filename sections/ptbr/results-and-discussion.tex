@@ -1,20 +1,19 @@
 \section{Resultados e Discussão}
 
-Diante dos métodos estudados e avaliados, as características relativas a nível de segurança, 
-implementação, vulnerabilidades e obsolescência são exploradas neste item e sumarizadas (Tabela 
+Neste item, os mecanismos de segurança avaliados serão explorados e suas características relativas 
+a nível de segurança, implementação, vulnerabilidades e obsolescência sumarizadas (Quadro 
 \ref{tab:comparativeTable}).
 
 %%%%% Basic
-A autenticação básica HTTP é simples e de fácil implementação, porém não possui mecanismos de 
+A autenticação básica HTTP possui fácil implementação porém não possui mecanismos de 
 garantia efetiva de segurança. As credenciais do usuário podem ser facilmente decodificadas, visto 
-que a codificação base64 é facilmente reversível, podendo ser realizada em poucos segundos. Também 
-é possível realizar ataques de repetição, visto que terceiros podem capturar pacotes e replicá-los, 
-mesmo que codificados, podendo obter acesso ao sistema. Este tipo de autenticação não possui proteção 
-contra \emph{proxies} ou \emph{middlewares}, que podem facilmente modificar o corpo da mensagem, e 
-também são vulneráveis a servidores falsificados, que se passam por outros para realizar o roubo de 
-credenciais \cite{GOURLEY2002}.
-
-Além destes pontos negativos, a autenticação básica não possui desconexão, pois o navegador mantém 
+que a codificação \emph{base64} é facilmente reversível, podendo ser realizada em poucos segundos
+\cite{GOURLEY2002}. Também é possível realizar ataques de repetição, visto que terceiros podem 
+capturar pacotes e replicá-los, mesmo que codificados, podendo obter acesso ao sistema. Este tipo 
+de autenticação não possui proteção contra \emph{proxies} ou \emph{middlewares}, que podem 
+facilmente modificar o corpo da mensagem, e também são vulneráveis a servidores falsificados, 
+que se passam por outros para realizar o roubo de credenciais \cite{GOURLEY2002}. Além destes 
+pontos negativos, a autenticação básica não possui desconexão, pois o navegador mantém 
 os dados em \emph{cache} por padrão, até ser fechado. A documentação deste método cita a sua falta 
 de segurança, indicando seu uso somente para propósitos simples de identificação, sem risco de 
 acesso a informações sensíveis ou valiosas \cite{RFC7617}. 
@@ -26,12 +25,11 @@ Apesar do incremento de segurança em relação a autenticação básica, a aute
 porém todos os outros cabeçalhos não possuem. Ataques de repetição podem ser realizados se a 
 implementação de identificadores únicos por desafio não for realizada. Caso não seja estabelecida 
 nenhuma política de força de senha, podem ser realizados ataques de dicionário, tentando adivinhar 
-a senha e outros parâmetros, visto que o nome do usuário é obtido sem esforço. Se a requisição 
+a senha e outros parâmetros, visto que o nome do usuário é obtido facilmente. Se a requisição 
 passar por \emph{proxies} hostis ou comprometidos, o cliente pode ficar vulnerável a ataques 
-\emph{man-in-the-middle} \cite{GOURLEY2002}. 
-
-Assim como a autenticação básica, a Digest não possui desconexão, possuindo o mesmo problema citado
-anteriormente. Sua documentação cita que, pelos padrões modernos de criptografia, este método 
+\emph{man-in-the-middle} \cite{GOURLEY2002}. Assim como a autenticação básica, a \emph{Digest} não 
+possui desconexão, possuindo o mesmo problema citado
+anteriormente. Sua documentação expõe que, pelos padrões modernos de criptografia, este método 
 é fraco, porém um substituto muito superior a autenticação básica \cite{RFC7616}.
 
 %%%%% Session
@@ -41,18 +39,15 @@ são utilizados para a validação das requisições. Por outro lado, os \emph{c
 outros aplicativos, tornando o sistema exposto a ataques \emph{Cross Site Scripting} (XSS) e 
 \emph{Cross Site Request Forgery} (CSRF). Para evitar ataques XSS, pode-se definir no \emph{cookie} 
 a \emph{flag} \texttt{http-only}, que faz com que o acesso por APIs do lado cliente seja negado 
-\cite{PAPATHANASAKI2022}. 
-
-Existe a possibilidade do ataque de fixação de sessão, onde o atacante insere seu próprio valor
+\cite{PAPATHANASAKI2022}. Ainda existe a possibilidade do ataque de fixação de sessão, onde o 
+atacante insere seu próprio valor
 dentro do \emph{cookie}, esperando o usuário entrar no sistema com esse identificador. Se o servidor
 aceitá-lo, o atacante obtém acesso ao servidor, podendo obter informações privadas sobre a vítima
-e realizar ações usando sua identidade \cite{DRHOVA2018}.
-
-Se não forem transportados por um canal seguro, como TLS, as informações nos cabeçalhos referentes 
-aos \emph{cookies} podem ser visualizadas. Por este motivo, além de enviados por um canal seguro, 
-os \emph{cookies} devem ser criptografados e assinados pelo servidor\cite{RFC6265}.
-
-A autenticação baseada em sessão é \emph{stateful}, contendo todos os identificadores de sessão do
+e realizar ações usando sua identidade \cite{DRHOVA2018}. Se não forem transportados por um canal 
+seguro, como TLS, as informações nos cabeçalhos referentes aos \emph{cookies} podem ser visualizadas. 
+Por este motivo, além de enviados por um canal seguro, 
+os \emph{cookies} devem ser criptografados e assinados pelo servidor\cite{RFC6265}. A autenticação 
+baseada em sessão é \emph{stateful}, contendo todos os identificadores de sessão do
 lado do servidor, causando uma sobrecarga no mesmo e dificultando o gerenciamento dessas sessões em
 múltiplos servidores, diferentemente das outras técnicas abordadas, que são \emph{stateless} 
 \cite{BALAJ2017}.
@@ -69,15 +64,14 @@ do JWT possua baixa entropia, um ataque de força-bruta pode ser realizado para 
 \cite{RFC7515}.
 
 %%%%% OAuth
-O protocolo OAuth quando foi publicado, em 2007, tornou-se rapidamente o padrão na indústria para 
-delegação de acesso na \emph{web}. Porém, teve problemas no domínio empresarial, devido ao seu desempenho. 
+O protocolo OAuth quando publicado, em 2007, tornou-se rapidamente o padrão na indústria para 
+delegação de acesso na \emph{web}. Porém enfrentou problemas no domínio empresarial, devido ao seu desempenho. 
 A comunidade percebeu que o protocolo não era escalável: exige gerenciamento de estado em diferentes 
 etapas, gerenciamento de credenciais temporárias e não fornece isolamento do servidor de autorização 
 do próprio servidor de recursos protegidos \cite{NOUREDDINE2011}. O OAuth 2.0 resolveu estes 
 problemas, facilitando o fluxo ao substituir as assinaturas por \emph{bearer tokens}, utilizando TLS 
 durante todo o fluxo, não somente no \emph{handshake} inicial e definindo o servidor de autorização 
 separadamente do servidor de recurso, que traz maior flexibilidade \cite{SIRIWARDENA2014}.
-
 Em relação a ataques, ambos são suscetíveis a CSRF. A versão 1.0 é mais suscetível devido a 
 falta de uso de TLS em todo seu fluxo, enquanto a versão 2.0 é suscetível a este ataque caso as 
 diretrizes de implementação não forem seguidas \cite{FETT2016}. Também acaba se tornando suscetível 
@@ -85,13 +79,12 @@ a ataques de \emph{phishing} e \emph{spoofing}, caso não forem seguidas as dire
 
 %%%%% OIDC
 
-O OpenID Connect, por ser uma camada sobre o protocolo OAuth 2.0, possui muitas vulnerabilidades 
+Já OpenID Connect, por ser uma camada sobre o protocolo OAuth 2.0, possui muitas vulnerabilidades 
 em comum com este. Porém, o OIDC possui algumas em particular que são aplicadas somente a
 ele: ataques de falsificação de solicitações no servidor, que são facilitados pela descoberta 
 \emph{ad hoc} e pelos recursos de registro dinâmico; ataques de injeção, permitidos devido aos mesmos
 recursos; ataques CSRF, devido ao recurso de inicialização de login de terceiros e ataques ao
-/emph{token} de identificação, que não existe no OAuth \cite{FETT2017}.
-
+\emph{token} de identificação, que não existe no OAuth \cite{FETT2017}.
 Da mesma forma, algumas das vulnerabilidades do OAuth 2.0 não são aplicadas ao OIDC: 
 suas configurações são menos propensas a ataques de redirecionamento aberto, uma vez que 
 \emph{placeholders} não são permitidos em URIs de redirecionamento; o TLS é obrigatório para 
@@ -101,16 +94,13 @@ alguns ataques de repetição quando o valor do estado não é usado ou vaza par
 
 \input{comparative-table}
 
-% A Tabela \ref{tab:comparativeTable} sumariza os dados levantados. O nível de segurança implica das
-% vulnerabilidades apresentadas sobre cada método com base na revisão bibliográfica realizada, assim 
-% como a obsolescência. 
 Dentre os métodos analisados, em relação a baixa segurança, as autenticações HTTP básica e Digest são 
 recomendadas somente a propósito de identificação \cite{RFC2617}. Caso o uso seja para acesso a 
 conteúdo privado, indica-se a utilização de um método mais recente e com maior segurança. Ainda, em
 relação a recursos de segurança aprimorados, o método que demonstra ser mais completo é o OpenID
 Connect: utiliza como base o OAuth 2.0, um padrão seguro e amplamente utilizado 
 de autorização, com adição de uma camada de autenticação, além de melhoras em relação a definições 
-e segurança, dada a obrigatoriedade do uso de SSL. Apesar disso, deve-se levar em consideração a 
+e segurança, dada a obrigatoriedade do uso de TLS. Apesar disso, deve-se levar em consideração a 
 complexidade de implementação e a necessidade de cada caso de uso, tornando a escolha do mecanismo
 a ser utilizado uma decisão dos desenvolvedores. Independente de qual a escolha, deve-se seguir as
 diretrizes impostas na especificação de cada mecanismo, para uma menor vulnerabilidade.

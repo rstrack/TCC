@@ -8,7 +8,7 @@ retornando o status HTTP 401 (não autorizado) e especificando o domínio de seg
 (\emph{security realm}) a ser acessado, com o cabeçalho \texttt{WWW-Authenticate}. Ao receber o 
 desafio, o cliente abre uma caixa de diálogo para que o usuário insira as credenciais para acesso 
 ao domínio. O cliente então une as informações de usuário e senha, colocando dois pontos entre 
-estas, e as codifica usando o método de codificação base64. Estas credenciais codificadas são 
+estas, e as codifica usando o método de codificação \emph{base64} \cite{rfc4648}. Estas credenciais codificadas são 
 colocadas no cabeçalho \texttt{Authorization}, e então a requisição é enviada para o servidor, que 
 fará a validação das credenciais e, caso validadas, retorna-se o status HTTP 200 (OK) 
 \cite{GOURLEY2002} (Figura \ref{fig:basicAuth}).

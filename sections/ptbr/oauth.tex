@@ -3,29 +3,29 @@
 O protocolo OAuth foi especificado na RFC 5849, fornecendo um método para clientes acessarem 
 recursos de um servidor em nome de um proprietário de recurso e também um processo para que os 
 usuários finais autorizem o acesso de terceiros aos seus recursos de servidor sem compartilhar suas
-credenciais \cite{RFC5849}. Este método de autenticação funciona seguindo as seguintes etapas:
+credenciais \cite{RFC5849}. Este método de autenticação funciona através das seguintes etapas:
 
 \begin{itemize}
 \item O usuário solicita o serviço de um sistema, chamado de cliente;
-\item O cliente, tendo previamente configurado acesso ao servidor de recursos, possuindo um 
+\item O cliente, tendo previamente configurado acesso ao servidor de recursos e possuindo um 
 identificador e um segredo compartilhado, envia uma solicitação a este servidor para receber um 
 \emph{token} de solicitação;
 \item O servidor valida a solicitação, enviando o \emph{token} de solicitação não-autorizado no 
 corpo da resposta HTTP;
-\item O cliente redireciona o agente do usuário para o servidor, que solicita o \emph{login} do 
+\item O cliente redireciona o agente do usuário para o servidor que solicita o \emph{login} do 
 usuário e depois a autorização para o cliente acessar o recurso;
-\item O cliente recebe um \emph{token} de solicitação, que utiliza em uma nova solicitação por 
-\emph{token} de acesso. Estas requisições são realizadas por meio de um canal TLS;
+\item O cliente recebe um \emph{token} de solicitação o qual utiliza em uma nova solicitação por 
+\emph{token} de acesso. Estas requisições são realizadas por meio de um canal TLS (\emph{Transport Layer Security});
 \item O servidor valida o \emph{token} de solicitação e envia o \emph{token} de acesso ao cliente e 
 opcionalmente um \emph{token} de atualização;
 \item O cliente utiliza o \emph{token} de acesso para solicitar os recursos do servidor.
 \end{itemize}
 
 Na RFC 6749 foi proposto o protocolo OAuth 2.0, tornando obsoleta sua versão anterior. Esta versão possui 
-poucas semelhanças com a versão anterior, utilizando os mesmos princípios mas com fluxo diferente e 
-abrangendo mais casos de uso, além de estabelecer o uso do protocolo HTTPS, possuindo todas as mensagens 
-criptografadas. Por este motivo os dois protocolos não são compatíveis, coexistindo e podendo ambos serem 
-suportados pelos sistemas \cite{RFC6749}. Diferente da versão 1.0, que depende de assinaturas 
+poucas semelhanças com a versão prévia, utilizando os mesmos princípios mas com fluxo diferente e 
+abrangendo mais casos de uso, além de estabelecer o uso do protocolo HTTPS (\emph{Hypertext Transfer 
+Protocol Secure}). Por este motivo os dois protocolos não são compatíveis, podendo ambos serem 
+implementas pelos sistemas separadamente \cite{RFC6749}. Diferente da versão 1.0 que depende de assinaturas 
 criptografadas para cada requisição, a versão 2.0 utiliza \emph{tokens} portadores (\emph{bearer tokens}) 
 que são protegidos devido ao uso do TLS \cite{SIRIWARDENA2014}. 
 
@@ -37,7 +37,7 @@ que são protegidos devido ao uso do TLS \cite{SIRIWARDENA2014}.
 \end{figure}
 
 Um dos fluxos de funcionamento 
-disponíveis, por código de autorização, é descrito pelas seguintes etapas (Figura \ref{fig:OAuth2}):
+disponíveis por código de autorização, é descrito pelas seguintes etapas (Figura \ref{fig:OAuth2}):
 
 \begin{itemize}
 \item O cliente (sistema solicitando acesso) direciona o proprietário do recurso para o \emph{endpoint} de autorização, no servidor
